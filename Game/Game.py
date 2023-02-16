@@ -1,7 +1,7 @@
 import mysql.connector
 from time import sleep
 import os
-
+import Menu
 import geopy.distance
 
 connection = mysql.connector.connect(
@@ -39,6 +39,7 @@ def create_new_player(username):
 
 player_name = input("Name the player: ")
 create_new_player(player_name)
+Menu.print_username(player_name)
 """ICAO1,ICAO2= input("Anna ekan kentän ISCO: "), input("Anna tokan kentän ISCO: ")
 cordinates = search_ICAO(ICAO1,ICAO2)
 place1 = cordinates[0],cordinates[1]
