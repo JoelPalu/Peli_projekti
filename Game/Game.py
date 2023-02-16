@@ -3,7 +3,7 @@ from time import sleep
 import os
 import Menu
 import geopy.distance
-
+#Yhdistäää meidän tietokantaan. Jos ei toimi nii tökkikää Kirill, että laiittaa päälle!
 connection = mysql.connector.connect(
     host ='26.83.105.196',
     port = 3307,
@@ -13,10 +13,14 @@ connection = mysql.connector.connect(
     autocommit = True
 )
 
+#Laskee 2 lentokentän etäisyyden
 def search_ICAO(input1, input2):
+    #Sql komento
     sql_command = "SELECT airport.latitude_deg, airport.longitude_deg FROM airport WHERE ident ='" + input1 + "' OR ident = '" + input2 + "'"
+    #Lista minne se kerää molempien kenttien lati ja long
     airport = ()
     cursor = connection.cursor()
+    #Käynistää sql komennon
     cursor.execute(sql_command)
     total = cursor.fetchall()
     if cursor.rowcount > 0:
