@@ -2,6 +2,7 @@ import mysql.connector
 from time import sleep
 import os
 import Menu
+import GP
 import geopy.distance
 #Yhdistäää meidän tietokantaan. Jos ei toimi nii tökkikää Kirill, että laiittaa päälle!
 connection = mysql.connector.connect(
@@ -29,19 +30,12 @@ def search_ICAO(input1, input2):
     return airport
 
 
-def create_new_player(username):
-    sql_command = "INSERT INTO player_stat(screen_name, fuel_consumed, fuel, points) values('" + username + "', 0, 10000,0)"
-    cursor = connection.cursor()
-    cursor.execute(sql_command)
-    total = cursor.fetchall()
-    if cursor.rowcount > 0:
-        for row in total:
-            print(row)
 
 
 
 
-player_name = input("Name the player: ")
+Menu.new_game()
+#player_name = input("Name the player: ")
 """ICAO1,ICAO2= input("Anna ekan kentän ISCO: "), input("Anna tokan kentän ISCO: ")
 cordinates = search_ICAO(ICAO1,ICAO2)
 place1 = cordinates[0],cordinates[1]
