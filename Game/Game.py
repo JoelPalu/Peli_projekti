@@ -3,7 +3,8 @@ from time import sleep
 import os
 import Menu
 import GP
-import geopy.distance
+os.system('cls')
+#import geopy.distance
 #Yhdistäää meidän tietokantaan. Jos ei toimi nii tökkikää Kirill, että laiittaa päälle!
 connection = mysql.connector.connect(
     host ='26.83.105.196',
@@ -30,18 +31,25 @@ def search_ICAO(input1, input2):
     return airport
 
 
+GP.idea()
+
+while True:
+    menu = Menu.menu()
+    if menu == 4:
+        break
+    Menu.new_game()
+    #player_name = input("Name the player: ")
+
+    """ICAO1,ICAO2= input("Anna ekan kentän ISCO: "), input("Anna tokan kentän ISCO: ")
+    cordinates = search_ICAO(ICAO1,ICAO2)
+    place1 = cordinates[0],cordinates[1]
+    place2 = cordinates[2], cordinates[3]
+    print(f"Lentokenttien etäisyys on: {geopy.distance.distance(place1,place2).km:1.2f}km")
+    """
+
+    sleep(4) #Peli jäätyy näkymään ja ei ota inputteja vastaan
+    os.system('cls') # puhdistaa taulun, niin voi piirtää uuden taulun.
 
 
+#game starts
 
-
-Menu.new_game()
-#player_name = input("Name the player: ")
-"""ICAO1,ICAO2= input("Anna ekan kentän ISCO: "), input("Anna tokan kentän ISCO: ")
-cordinates = search_ICAO(ICAO1,ICAO2)
-place1 = cordinates[0],cordinates[1]
-place2 = cordinates[2], cordinates[3]
-print(f"Lentokenttien etäisyys on: {geopy.distance.distance(place1,place2).km:1.2f}km")
-"""
-
-sleep(4) #Peli jäätyy näkymään ja ei ota inputteja vastaan
-os.system('cls') # puhdistaa taulun, niin voi piirtää uuden taulun.

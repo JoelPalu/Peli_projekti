@@ -17,7 +17,7 @@ def menu():
     print("3    Leaderboard")
     print("4    Quit")
     bot_UI()
-    choice = input("Go to: ")
+    choice = int(input("Go to: "))
     os.system('cls')
     return choice
 
@@ -50,6 +50,8 @@ def new_game():
     bot_UI()
     difficulty = input("Go back, Easy, Medium or Hard: ")
     os.system('cls')
+    if difficulty == "Go back" or difficulty == "go back":
+        return
 
     bot_UI()
     print("Choose where to start")
