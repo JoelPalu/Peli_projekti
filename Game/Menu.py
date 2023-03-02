@@ -21,7 +21,7 @@ def menu():
     os.system('cls')
     return choice
 
-#Tekee uuden käyttäjän ja lisää sen tietokantaan.
+#Tekee uuden käyttäjän ja lisää sen tietokantaan. Käytetään lopulisen uuden pelin luoti funktiossa
 def create_new_player(username, difficulty):
         sql_command = "INSERT INTO player_stat(screen_name, fuel_consumed, fuel, points, difficulty) values('" + username + "', 0, 10000,0,'" + difficulty + "')"
         cursor = connection.cursor()
@@ -31,15 +31,59 @@ def create_new_player(username, difficulty):
             for row in total:
                 print(row)
 
+#Tarkistaa onko vaikeus taso oikein kirjoitettu. Käytetään lopulisen uuden pelin luoti funktiossa
+def diffcheck():
+    while True:
+        user = input("Go back, Easy, Medium or Hard: ")
+        os.system('cls')
+        if user == "Go back" or user == "go back":
+            return "go back"
+
+        elif user == "Easy" or user == "easy":
+            return "easy"
+
+
+        elif user == "Medium" or user == "medium":
+            return "medium"
+
+        elif user == "Hard" or user == "hard":
+            return "hard"
+
+        else:
+            print("Wrong input!")
+
+#Tarkistaa onko aloitus piste oikein kirjoitettu. Käytetään lopulisen uuden pelin luoti funktiossa
+def new_continent(continent):
+    while True :
+        if continent == "Europe" or continent == "europe":
+            return "EU"
+        elif continent == "North-America" or continent == "north-america":
+            return "NA"
+        elif continent == "South-America" or continent == "south-america":
+            return "SA"
+        elif continent == "Oceania" or continent == "oceania":
+            return "OC"
+        elif continent == "Africa" or continent == "africa":
+            return "AF"
+        elif continent == "Asia" or continent == "asia":
+            return "AS"
+        elif continent == "Antartica" or continent == "antartica":
+            return "AN"
+        if continent == "Go back" or continent == "go back":
+            return "go back"
+        else: print("Wrong input!")
+
 #Uuden pelin luominen. ja lisääminen tietokantaan.
 def new_game():
 
     bot_UI()
+
     #Pelaajan nimi luonti
     print("Create new player")
     bot_UI()
     username = input("Give username: ")
     os.system('cls')
+
     #Vaikeustason valinta
     bot_UI()
     print("Choose difficulty or Go back: ")
@@ -48,15 +92,16 @@ def new_game():
     print("Medium: Medium plane uses 50% more fuel and needs at least medium airport to land.")
     print("Hard: largest airplane uses 75% more fuel needs at least large airport to land.")
     bot_UI()
-    difficulty = input("Go back, Easy, Medium or Hard: ")
+    difficulty = diffcheck()
     os.system('cls')
-    if difficulty == "Go back" or difficulty == "go back":
+    if difficulty == "go back":
         return
 
+
+    #Aloitus pisteen valinta
     bot_UI()
-    print("Choose where to start")
-
-
+    print("Choose continent where to start or go back")
+    print("")
     print("Europe = Helsinki Vantaa airport Finland")
     print("North-america = John F. Kennedy International Airport USA")
     print("South-america = Brasilia international Airport Brazil")
@@ -65,35 +110,6 @@ def new_game():
     print("Oceania = Sydney Airport, Australia, Oceania")
     print("Antarctica = Boulder Clay Runaway Airport, Antarctica")
     bot_UI()
-
-
-    while difficulty != "Go back" and difficulty != "go back":
-        if difficulty == "Easy" or difficulty == "easy":
-            difficulty = "easy"
-
-        elif difficulty == "Medium" or difficulty == "medium":
-            difficulty = "medium"
-
-        elif difficulty == "Hard" or difficulty == "hard":
-            difficulty = "hard"
-
-        else: print("Wrong input!")
-"""
-def new_continent(continent):
-    while continent != "Go back" and continent != "go back":
-        if continent == "Europe" or continent == "europe":
-
-        elif continent == "North-America" or continent == "north-america":
-
-        elif continent == "South-America" or continent == "south-america":
-
-        elif continent == "Oceania" or continent == "oceania":
-
-        elif continent == "Africa" or continent == "africa":
-
-        elif continent == "Asia" or continent == "asia":
-
-        elif continent == "Antartica" or continent == "antartica":
-            
-        else: print("Wrong input!")
-"""
+    continent = new_continent()
+    if continent == "go back":
+        return
