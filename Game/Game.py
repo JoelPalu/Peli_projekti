@@ -34,7 +34,7 @@ def search_ICAO(input1, input2):
 
 
 
-Menu.menu()
+Menu.new_game()
 #player_name = input("Name the player: ")
 """ICAO1,ICAO2= input("Anna ekan kentän ISCO: "), input("Anna tokan kentän ISCO: ")
 cordinates = search_ICAO(ICAO1,ICAO2)
